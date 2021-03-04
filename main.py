@@ -2,7 +2,7 @@ import flask
 from flask import request, jsonify
 import mysql.connector
 from mysql.connector import Error
-# import key_word_search
+import key_word_search
 
 app = flask.Flask(__name__)
 print("here")
@@ -47,12 +47,12 @@ def hello():
 #     return jsonify(json_data)
 
 
-# @app.route('/api/v1/principle_para', methods=['GET'])
-# def get_para():
-#     query_parameters = request.args
-#     key_word = query_parameters.get('key_word')
-#     search = key_word_search.KeyWordSearch()
-#     return jsonify(search.query(key_word))
+@app.route('/api/v1/principle_para', methods=['GET'])
+def get_para():
+    query_parameters = request.args
+    key_word = query_parameters.get('key_word')
+    search = key_word_search.KeyWordSearch()
+    return jsonify(search.query(key_word))
 
 
 if __name__ == '__main__':
