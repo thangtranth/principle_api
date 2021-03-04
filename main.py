@@ -29,22 +29,22 @@ def hello():
     return 'Hello World!'
 
 
-# API:
-@app.route('/api/v1/principle', methods=['GET'])
-def get_principle():
-    query_parameters = request.args
-    situation = query_parameters.get('situation')
-    print(situation)
-    query = "SELECT principle FROM situation_principle WHERE situation=%s;"
-    cursor.execute(query, (situation,))
-    principles = cursor.fetchall()
-    print(principles)
-    row_header = [x[0] for x in cursor.description]
-    print(row_header)
-    json_data = []
-    for result in principles:
-        json_data.append(dict(zip(row_header, result)))
-    return jsonify(json_data)
+# # API:
+# @app.route('/api/v1/principle', methods=['GET'])
+# def get_principle():
+#     query_parameters = request.args
+#     situation = query_parameters.get('situation')
+#     print(situation)
+#     query = "SELECT principle FROM situation_principle WHERE situation=%s;"
+#     cursor.execute(query, (situation,))
+#     principles = cursor.fetchall()
+#     print(principles)
+#     row_header = [x[0] for x in cursor.description]
+#     print(row_header)
+#     json_data = []
+#     for result in principles:
+#         json_data.append(dict(zip(row_header, result)))
+#     return jsonify(json_data)
 
 
 # @app.route('/api/v1/principle_para', methods=['GET'])
