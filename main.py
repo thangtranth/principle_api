@@ -2,7 +2,7 @@ import flask
 from flask import request, jsonify
 import mysql.connector
 from mysql.connector import Error
-import key_word_search
+# import key_word_search
 
 app = flask.Flask(__name__)
 app.config['Debug'] = True
@@ -20,6 +20,12 @@ try:
 
 except Error as e:
     print("Error while connecting to MySQL", e)
+
+
+@app.route('/')
+def hello():
+    """Return a friendly HTTP greeting."""
+    return 'Hello World!'
 
 
 # API:
@@ -40,12 +46,12 @@ def get_principle():
     return jsonify(json_data)
 
 
-@app.route('/api/v1/principle_para', methods=['GET'])
-def get_para():
-    query_parameters = request.args
-    key_word = query_parameters.get('key_word')
-    search = key_word_search.KeyWordSearch()
-    return jsonify(search.query(key_word))
+# @app.route('/api/v1/principle_para', methods=['GET'])
+# def get_para():
+#     query_parameters = request.args
+#     key_word = query_parameters.get('key_word')
+#     search = key_word_search.KeyWordSearch()
+#     return jsonify(search.query(key_word))
 
 
 app.run(port=5000)
