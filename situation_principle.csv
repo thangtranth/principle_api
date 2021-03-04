@@ -1,0 +1,79 @@
+﻿id,situation_id,situation,principle_id,principle
+1,1,am i on the right career path?,1,"Think for yourself to decide 1) what you want, 2) what is true, and 3) what you should do to achieve #1 in light of #2, and do that with humility and open-mindedness so that you consider the best thinking available to you."
+2,1,am i on the right career path?,543,Think about what you want out of life and make your work a path to getting it
+3,1,am i on the right career path?,170,Make your passion and your work one and the same and do it with people you want to be with.
+4,1,am i on the right career path?,544,Recognize when to ride the wave
+5,1,am i on the right career path?,330," Recognize that personal evolution should be relatively rapid and a natural consequence of discovering one’s strengths and weaknesses; as a result, career paths are not planned at the outset"
+6,2,I'm considering changing my career path,543,think about what you want out of life and make your work a path to getting it
+7,2,I'm considering changing my career path,544,recognize when to ride the wave
+8,3,i feel stuck in the wrong career,543,think about what you want out of life and make your work a path to getting it
+9,3,i feel stuck in the wrong career,544,recognize when to ride the wave
+10,3,i feel stuck in the wrong career,516, Work for goals that you and your organization are excited about and think about how your tasks connect to those goals
+11,3,i feel stuck in the wrong career,170,Make your passion and your work one and the same and do it with people you want to be with.
+12,3,i feel stuck in the wrong career,1,"think for yourself to decide 1) what you want, 2) what is true, and 3) what you should do to achieve #1 in light of #2, and do that with humility and open-mindedness so that you consider the best thinking available to you."
+13,4,I want to transfer into another area of the company,374, Have people “complete their swings” before moving on to new roles
+14,4,I want to transfer into another area of the company,373," Remember that the goal of a transfer is the best, highest use of the person in a way that benefits the community as a whole"
+15,4,I want to transfer into another area of the company,330," Recognize that personal evolution should be relatively rapid and a natural consequence of discovering one’s strengths and weaknesses; as a result, career paths are not planned at the outset"
+16,5,I dont think I am getting the training I need to improve,330," Recognize that personal evolution should be relatively rapid and a natural consequence of discovering one’s strengths and weaknesses; as a result, career paths are not planned at the outset"
+17,5,I dont think I am getting the training I need to improve,349," Make the process of learning what someone is like open, evolutionary, and iterative"
+18,5,I dont think I am getting the training I need to improve,177," Speak up, own it, or get out"
+19,5,I dont think I am getting the training I need to improve,434, Escalate when you can’t adequately handle your responsibilities and make sure that the people who work for you are proactive about doing the same
+20,6,I dont feel challenged enough in my job,516, Work for goals that you and your organization are excited about and think about how your tasks connect to those goals
+21,6,I dont feel challenged enough in my job,24," It is a fundamental law of nature that in order to gain strength one has to push one’s limits, which is painful"
+22,6,I dont feel challenged enough in my job,319, Play jazz with people with whom you are compatible but who will also challenge you
+23,6,I dont feel challenged enough in my job,330," Recognize that personal evolution should be relatively rapid and a natural consequence of discovering one’s strengths and weaknesses; as a result, career paths are not planned at the outset"
+24,7,How do I decide what my next job should be,170,Make your passion and your work one and the same and do it with people you want to be with.
+25,7,How do I decide what my next job should be,303, Remember that people are built very differently and that different ways of seeing and thinking make people suitable for different jobs
+26,7,How do I decide what my next job should be,1,"Think for yourself to decide 1) what you want, 2) what is true, and 3) what you should do to achieve #1 in light of #2, and do that with humility and open-mindedness so that you consider the best thinking available to you."
+27,7,How do I decide what my next job should be,4, Dreams + Reality + Determination = A Successful Life
+28,8,how do I optimize all the things I want to do to have a fulfilling life,4, Dreams + Reality + Determination = A Successful Life
+29,8,how do I optimize all the things I want to do to have a fulfilling life,1,"Think for yourself to decide 1) what you want, 2) what is true, and 3) what you should do to achieve #1 in light of #2, and do that with humility and open-mindedness so that you consider the best thinking available to you."
+30,8,how do I optimize all the things I want to do to have a fulfilling life,47, Almost nothing can stop you from succeeding if you have a) flexibility and b) self-accountability
+31,8,how do I optimize all the things I want to do to have a fulfilling life,42, Don’t confuse goals with desires
+32,8,how do I optimize all the things I want to do to have a fulfilling life,46, Remember that great expectations create great capabilities
+33,8,how do I optimize all the things I want to do to have a fulfilling life,81, Sincerely believe that you might not know the best possible path and recognize that your ability to deal well with “not knowing” is more important than whatever it is you do know
+34,9,how do i develop someone,328," Constantly Train, Test, Evaluate, and Sort People"
+35,9,how do i develop someone,391, Managing the people who report to you should feel like skiing together
+36,9,how do i develop someone,46, Remember that great expectations create great capabilities
+37,9,how do i develop someone,349," Make the process of learning what someone is like open, evolutionary, and iterative"
+38,9,how do i develop someone,334, Provide constant feedback
+39,9,how do i develop someone,333, Recognize that experience creates internalized learning that book learning can’t replace
+40,9,how do i develop someone,330," Recognize that personal evolution should be relatively rapid and a natural consequence of discovering one’s strengths and weaknesses; as a result, career paths are not planned at the outset"
+41,9,how do i develop someone,332," Teach your people to fish rather than give them fish, even if that means letting them make some mistakes"
+42,9,how do i develop someone,331, Understand that training guides the process of personal evolution
+43,10,how do i make my work meaningful,516, Work for goals that you and your organization are excited about and think about how your tasks connect to those goals
+44,10,how do i make my work meaningful,543,Think about what you want out of life and make your work a path to getting it
+45,10,how do i make my work meaningful,105, Meaningful work and meaningful relationships aren’t just nice things we chose for ourselves—they are genetically programmed into us
+46,11,i dont like part of my job,417, Force yourself and the people who work for you to do difficult things
+47,11,i dont like part of my job,170,Make your passion and your work one and the same and do it with people you want to be with.
+48,11,i dont like part of my job,516, Work for goals that you and your organization are excited about and think about how your tasks connect to those goals
+49,11,i dont like part of my job,42, Don’t confuse goals with desires
+50,11,i dont like part of my job,1,"Think for yourself to decide 1) what you want, 2) what is true, and 3) what you should do to achieve #1 in light of #2, and do that with humility and open-mindedness so that you consider the best thinking available to you."
+51,11,i dont like part of my job,177," Speak up, own it, or get out"
+52,12,I perceive someone is doing someone else's job,400, Watch out for “job slip.
+53,12,I perceive someone is doing someone else's job,429, Avoid getting sucked down
+54,12,I perceive someone is doing someone else's job,518, Don’t act before thinking. Take the time to come up with a game plan
+55,12,I perceive someone is doing someone else's job,434, Escalate when you can’t adequately handle your responsibilities and make sure that the people who work for you are proactive about doing the same
+56,12,I perceive someone is doing someone else's job,399, Remember who has what responsibilities
+57,13,I am covering for a friend's mistake at work,175, Don’t let loyalty to people stand in the way of truth and the well-being of the organization
+58,13,I am covering for a friend's mistake at work,426, Hold yourself and your people accountable and appreciate them for holding you accountable
+59,13,I am covering for a friend's mistake at work,400, Watch out for “job slip.
+60,14,I'm struggling with work life balance,524, Allow time for rest and renovation
+61,14,I'm struggling with work life balance,520, Recognize that everyone has too much to do
+62,14,I'm struggling with work life balance,41," Prioritize: While you can have virtually anything you want, you can’t have everything you want"
+63,15,I'm struggle to solve a problem adequately,545,"If your best solution isn't good enough, think harder or escalate that you can't produce a solution that is good enough"
+64,15,I'm struggle to solve a problem adequately,86," Remember that you’re looking for the best answer, not simply the best answer that you can come up with yourself"
+65,15,I'm struggle to solve a problem adequately,519," Look for creative, cut-through solutions"
+66,15,I'm struggle to solve a problem adequately,52, Be specific in identifying your problems
+67,15,I'm struggle to solve a problem adequately,56, Diagnose problems to get at their root causes
+68,16,How can i get my dream job?,170,Make your passion and your work one and the same and do it with people you want to be with.
+69,16,How can i get my dream job?,543,Think about what you want out of life and make your work a path to getting it
+70,16,How can i get my dream job?,4, Dreams + Reality + Determination = A Successful Life
+71,17,I'm struggling to decide if I should quite my job,544,Recognize when to ride the wave
+72,17,I'm struggling to decide if I should quite my job,146, Prioritize by weighing the value of additional information against the cost of not deciding
+73,17,I'm struggling to decide if I should quite my job,516, Work for goals that you and your organization are excited about and think about how your tasks connect to those goals
+74,18,I feel stuck in the wrong career,543,Think about what you want out of life and make your work a path to getting it
+75,18,I feel stuck in the wrong career,544,Recognize when to ride the wave
+76,18,I feel stuck in the wrong career,516, Work for goals that you and your organization are excited about and think about how your tasks connect to those goals
+77,18,I feel stuck in the wrong career,170,Make your passion and your work one and the same and do it with people you want to be with.
+78,18,I feel stuck in the wrong career,1,"Think for yourself to decide 1) what you want, 2) what is true, and 3) what you should do to achieve #1 in light of #2, and do that with humility and open-mindedness so that you consider the best thinking available to you."
