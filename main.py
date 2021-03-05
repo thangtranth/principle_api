@@ -1,7 +1,7 @@
 import flask
 from flask import request, jsonify
-import mysql.connector
-from mysql.connector import Error
+# import mysql.connector
+# from mysql.connector import Error
 import key_word_search
 
 app = flask.Flask(__name__)
