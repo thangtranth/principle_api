@@ -1,14 +1,14 @@
 import pickle
 import pandas as pd
 import numpy as np
+from sentence_transformers import SentenceTransformer
 
 # Load model and data
 sentence_file = open("sentence", "rb")
 sentence = pickle.load(sentence_file)
 sentence_embedding_file = open("sentence_embedding", "rb")
 sentence_embedding = pickle.load(sentence_embedding_file)
-sbert_model_file = open("sbert_model", "rb")
-sbert_model = pickle.load(sbert_model_file)
+sbert_model = SentenceTransformer('bert-base-nli-mean-tokens')
 
 # Processing text to paragraphs
 f = open('Principles.txt', 'r')
