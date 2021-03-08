@@ -5,7 +5,6 @@ from flask import request, jsonify
 import key_word_search
 
 app = flask.Flask(__name__)
-print("here")
 # app.config['Debug'] = True
 # try:
 #     connection = mysql.connector.connect(host='localhost',
@@ -50,7 +49,7 @@ def hello():
 @app.route('/api/v1/principle_para', methods=['GET'])
 def get_para():
     query_parameters = request.args
-    key_word = query_parameters.get('key_word')
+    key_word = query_parameters.get('key_word') 
     search = key_word_search.KeyWordSearch()
     return jsonify(search.query(key_word))
 
