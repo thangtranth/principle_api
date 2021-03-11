@@ -6,6 +6,8 @@ import key_word_search
 import wiki_bot
 
 app = flask.Flask(__name__)
+
+
 # app.config['Debug'] = True
 # try:
 #     connection = mysql.connector.connect(host='localhost',
@@ -50,15 +52,19 @@ def hello():
 @app.route('/api/v1/principle_para', methods=['GET'])
 def get_para():
     query_parameters = request.args
-    key_word = query_parameters.get('key_word') 
+    key_word = query_parameters.get('key_word')
     search = key_word_search.KeyWordSearch()
     return jsonify(search.query(key_word))
+
 
 @app.route('/api/v1/wiki_data', methods=['GET'])
 def wiki_data():
     query_parameters = request.args
-    answer = query_parameters.get('key_word')
+    question = query_parameters.get('key_word')
+    answer = wiki_bot.wiki_bot(question)
+    print(answer)
     return jsonify(answer)
+
 
 if __name__ == '__main__':
     # This is used when running locally. Gunicorn is used to run the

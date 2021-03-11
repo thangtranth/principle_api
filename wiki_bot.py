@@ -40,7 +40,8 @@ def find_code(word, type_query='query_entity'):
         code = links[0][links[0].find(':') + 1:]
         print(code)
     else:
-        link = 'https://en.wikipedia.org/w/api.php?action=query&prop=pageprops&ppprop=wikibase_item&redirects=1&format=json&titles={}'.format(word)
+        link = 'https://en.wikipedia.org/w/api.php?action=query&prop=pageprops&ppprop=wikibase_item&redirects=1&format=json&titles={}'.format(
+            word)
         page = requests.get(link)
         page = page.json()
         page_id = list(page['query']['pages'].keys())[0]
@@ -77,6 +78,7 @@ def wiki_query(property_code, entity_code, mode=1):
         results.append(result['itemLabel']['value'])
     return results
 
+
 # add the property and noun in the query
 def wiki_data(query_entity, query_property):
     # find the property code
@@ -98,6 +100,7 @@ def wiki_bot(corpus):
     answer = wiki_data(query_entity, query_property)
     answer_json = {'answer': answer}
     return answer_json
+
 
 if __name__ == '__main__':
     answer = wiki_bot("What is Hanoi area?")
