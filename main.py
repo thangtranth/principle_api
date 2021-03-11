@@ -3,6 +3,7 @@ from flask import request, jsonify
 # import mysql.connector
 # from mysql.connector import Error
 import key_word_search
+import wiki_bot
 
 app = flask.Flask(__name__)
 # app.config['Debug'] = True
@@ -53,6 +54,11 @@ def get_para():
     search = key_word_search.KeyWordSearch()
     return jsonify(search.query(key_word))
 
+@app.route('/api/v1/wiki_data', methods=['GET'])
+def wiki_data():
+    query_parameters = request.args
+    answer = query_parameters.get('key_word')
+    return jsonify(answer)
 
 if __name__ == '__main__':
     # This is used when running locally. Gunicorn is used to run the
