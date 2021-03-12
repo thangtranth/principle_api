@@ -40,8 +40,8 @@ def find_code(word, type_query='query_entity'):
         code = links[0][links[0].find(':') + 1:]
         print(code)
     else:
-        link = 'https://en.wikipedia.org/w/api.php?action=query&prop=pageprops&ppprop=wikibase_item&redirects=1&format=json&titles={}'.format(
-            word)
+        link = 'https://en.wikipedia.org/w/api.php?action=query&prop=pageprops&ppprop=wikibase_item&redirects=1' \
+               '&format=json&titles={}'.format(word)
         page = requests.get(link)
         page = page.json()
         page_id = list(page['query']['pages'].keys())[0]
@@ -50,6 +50,8 @@ def find_code(word, type_query='query_entity'):
 
 
 def wiki_query(property_code, entity_code, mode=1):
+    # we try to swap the entity and ?item variable to see if we can get the results due to the relationship between
+    # them is complicated.
     if mode == 1:
         query = """
                             SELECT ?item ?itemLabel
@@ -79,19 +81,42 @@ def wiki_query(property_code, entity_code, mode=1):
     return results
 
 
+def dbpedia_query(query_entity):
+    sparql = SPARQLWrapper("https://dbpedia.org/sparql")
+    query = """SELECT ?description WHERE
+        { 
+        ?entity rdfs:label ?label .
+        ?entity dbo:abstract ?description .
+        FILTER (STR(?label) = '""" + query_entity[0].text + """' && LANG(?description) = "en") .
+        }
+        LIMIT 1"""
+    print(query)
+
+    sparql.setQuery(query)
+    sparql.setReturnFormat(JSON)
+    results = sparql.query().convert()
+    for i in results['results']['bindings']:
+        result = (i['description']['value'])
+    return result
+
 # add the property and noun in the query
 def wiki_data(query_entity, query_property):
-    # find the property code
-    property_word = query_property[0].text
-    property_code = find_code(property_word, 'query_property')
-    # find the entity code
-    entity_word = query_entity[0].text
-    entity_code = find_code(entity_word, 'query_entity')
-    results = wiki_query(property_code, entity_code)
-    # print(len(results['results']['bindings']))
-    # if len(results['results']['bindings']) == 0:
-    if len(results) == 0:
-        results = wiki_query(property_code, entity_code, mode='reverse')
+    # query using dbpedia
+    if len(query_property) == 0:
+        results = dbpedia_query(query_entity)
+    else:
+        # query using wikidata
+        # find the property code
+        property_word = query_property[0].text
+        property_code = find_code(property_word, 'query_property')
+        # find the entity code
+        entity_word = query_entity[0].text
+        entity_code = find_code(entity_word, 'query_entity')
+        results = wiki_query(property_code, entity_code)
+        # print(len(results['results']['bindings']))
+        # if len(results['results']['bindings']) == 0:
+        if len(results) == 0:
+            results = wiki_query(property_code, entity_code, mode='reverse')
     return results
 
 
@@ -103,5 +128,5 @@ def wiki_bot(corpus):
 
 
 if __name__ == '__main__':
-    answer = wiki_bot("What is Hanoi area?")
+    answer = wiki_bot("What is Hanoi?")
     print(answer)
