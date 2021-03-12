@@ -82,14 +82,14 @@ def wiki_query(property_code, entity_code, mode=1):
 
 
 def wikipedia_query(query_entity):
-    result = [wikipedia.summary(query_entity[0].text)]
+    result = [wikipedia.summary(query_entity[0].text).split('\n')[0]]
     return result
 
 # add the property and noun in the query
 def wiki_data(query_entity, query_property):
     # query using dbpedia
     if len(query_property) == 0:
-        results = wikipedia_query(query_entity).split('\n')[0]
+        results = wikipedia_query(query_entity)
     else:
         # query using wikidata
         # find the property code
@@ -114,5 +114,5 @@ def wiki_bot(corpus):
 
 
 if __name__ == '__main__':
-    answer = wiki_bot("What is Hanoi?")
+    answer = wiki_bot("What is Vietnam?")
     print(answer)
