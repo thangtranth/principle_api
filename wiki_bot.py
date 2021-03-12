@@ -90,6 +90,8 @@ def wiki_data(query_entity, query_property):
     # query using dbpedia
     if len(query_property) == 0:
         results = wikipedia_query(query_entity)
+    elif len(query_entity) == 0:
+        results = wikipedia_query(query_property)
     else:
         # query using wikidata
         # find the property code
@@ -114,5 +116,5 @@ def wiki_bot(corpus):
 
 
 if __name__ == '__main__':
-    answer = wiki_bot("What is Vietnam?")
+    answer = wiki_bot("What is badminton?")
     print(answer)
