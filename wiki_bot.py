@@ -96,7 +96,7 @@ def dbpedia_query(query_entity):
     sparql.setReturnFormat(JSON)
     results = sparql.query().convert()
     for i in results['results']['bindings']:
-        result = (i['description']['value'])
+        result = [i['description']['value']]
     return result
 
 # add the property and noun in the query
