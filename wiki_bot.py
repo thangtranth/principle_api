@@ -2,7 +2,7 @@ from SPARQLWrapper import SPARQLWrapper, JSON
 import en_core_web_md
 import requests
 import bs4
-
+import wikipedia
 en_model = en_core_web_md.load()
 
 
@@ -81,29 +81,15 @@ def wiki_query(property_code, entity_code, mode=1):
     return results
 
 
-def dbpedia_query(query_entity):
-    sparql = SPARQLWrapper("https://dbpedia.org/sparql")
-    query = """SELECT ?description WHERE
-        { 
-        ?entity rdfs:label ?label .
-        ?entity dbo:abstract ?description .
-        FILTER (STR(?label) = '""" + query_entity[0].text + """' && LANG(?description) = "en") .
-        }
-        LIMIT 1"""
-    print(query)
-
-    sparql.setQuery(query)
-    sparql.setReturnFormat(JSON)
-    results = sparql.query().convert()
-    for i in results['results']['bindings']:
-        result = [i['description']['value']]
+def wikipedia_query(query_entity):
+    result = [wikipedia.summary(query_entity[0].text)]
     return result
 
 # add the property and noun in the query
 def wiki_data(query_entity, query_property):
     # query using dbpedia
     if len(query_property) == 0:
-        results = dbpedia_query(query_entity)
+        results = wikipedia_query(query_entity)
     else:
         # query using wikidata
         # find the property code
