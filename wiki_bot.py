@@ -89,7 +89,7 @@ def wikipedia_query(query_entity):
 def wiki_data(query_entity, query_property):
     # query using dbpedia
     if len(query_property) == 0:
-        results = wikipedia_query(query_entity)
+        results = wikipedia_query(query_entity).split('\n')[0]
     else:
         # query using wikidata
         # find the property code
