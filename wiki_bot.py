@@ -126,7 +126,7 @@ def google_answer(corpus):
     result = []
     answer = people_also_ask.get_answer(corpus)
     if answer['has_answer']:
-        result.append(answer)
+        result.append(answer['response'])
     return result
 
 
