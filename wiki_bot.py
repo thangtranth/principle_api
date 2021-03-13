@@ -120,7 +120,7 @@ def wiki_data(query_entity, query_property):
 
 
 def google_answer(corpus):
-    answer = people_also_ask.get_answer(corpus)
+    result = [people_also_ask.get_answer(corpus)['response']]
     return answer
 
 
@@ -128,7 +128,7 @@ def wiki_bot(corpus):
     query_entity, query_property = find_entities(corpus)
     answer = wiki_data(query_entity, query_property)
     if len(answer) == 0:
-        answer = google_answer(corpus)['response']
+        answer = google_answer(corpus)
     answer_json = {'answer': answer}
     return answer_json
 
