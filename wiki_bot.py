@@ -3,6 +3,8 @@ import en_core_web_md
 import requests
 import bs4
 import wikipedia
+import people_also_ask
+
 en_model = en_core_web_md.load()
 
 
@@ -24,6 +26,7 @@ def find_entities(corpus):
 
 def find_code(word, type_query='query_entity'):
     print("word in find code: ", word)
+    code_result = []
     if type_query == 'query_property':
         url = 'https://www.wikidata.org/w/index.php?search=p:{}'.format(word)
         res = requests.get(url)
@@ -36,9 +39,10 @@ def find_code(word, type_query='query_entity'):
                     continue
                 else:
                     links.append(link.get('href'))
-
+        if len(links) == 0:
+            return code_result
         code = links[0][links[0].find(':') + 1:]
-        print(code)
+        code_result.append(code)
     else:
         link = 'https://en.wikipedia.org/w/api.php?action=query&prop=pageprops&ppprop=wikibase_item&redirects=1' \
                '&format=json&titles={}'.format(word)
@@ -46,7 +50,8 @@ def find_code(word, type_query='query_entity'):
         page = page.json()
         page_id = list(page['query']['pages'].keys())[0]
         code = page['query']['pages'][page_id]['pageprops']['wikibase_item']
-    return code
+        code_result.append(code)
+    return code_result
 
 
 def wiki_query(property_code, entity_code, mode=1):
@@ -85,14 +90,18 @@ def wikipedia_query(query_entity):
     result = [wikipedia.summary(query_entity[0].text).split('\n')[0]]
     return result
 
+
 # add the property and noun in the query
 def wiki_data(query_entity, query_property):
     # query using dbpedia
+    print(query_entity)
+    print(query_property)
+    results = []
     if len(query_property) == 0:
         results = wikipedia_query(query_entity)
     elif len(query_entity) == 0:
         results = wikipedia_query(query_property)
-    else:
+    elif (len(query_property) != 0) and (len(query_entity) != 0):
         # query using wikidata
         # find the property code
         property_word = query_property[0].text
@@ -100,21 +109,30 @@ def wiki_data(query_entity, query_property):
         # find the entity code
         entity_word = query_entity[0].text
         entity_code = find_code(entity_word, 'query_entity')
-        results = wiki_query(property_code, entity_code)
-        # print(len(results['results']['bindings']))
-        # if len(results['results']['bindings']) == 0:
-        if len(results) == 0:
-            results = wiki_query(property_code, entity_code, mode='reverse')
+        if len(entity_code) > 0 and len(property_code) > 0:
+            results = wiki_query(property_code[0], entity_code[0])
+            # print(len(results['results']['bindings']))
+            # if len(results['results']['bindings']) == 0:
+            if len(results) == 0:
+                results = wiki_query(property_code[0], entity_code[0], mode='reverse')
+
     return results
+
+
+def google_answer(corpus):
+    answer = people_also_ask.get_answer(corpus)
+    return answer
 
 
 def wiki_bot(corpus):
     query_entity, query_property = find_entities(corpus)
     answer = wiki_data(query_entity, query_property)
+    if len(answer) == 0:
+        answer = google_answer(corpus)['response']
     answer_json = {'answer': answer}
     return answer_json
 
 
 if __name__ == '__main__':
-    answer = wiki_bot("What is badminton?")
+    answer = wiki_bot("why is summer hot?")
     print(answer)
