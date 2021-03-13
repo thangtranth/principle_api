@@ -121,7 +121,7 @@ def wiki_data(query_entity, query_property):
 
 def google_answer(corpus):
     result = [people_also_ask.get_answer(corpus)['response']]
-    return answer
+    return result
 
 
 def wiki_bot(corpus):
