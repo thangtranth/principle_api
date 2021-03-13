@@ -12,6 +12,7 @@ en_model = en_core_web_md.load()
 def find_entities(corpus):
     query_properties = []
     query_entities = []
+    question_start = []
     parsed_sent = en_model(corpus)
     print(' '.join(['{}_{}'.format(tok, tok.tag_) for tok in parsed_sent]))
     for chunk in parsed_sent.ents:
@@ -19,9 +20,11 @@ def find_entities(corpus):
     for tok in parsed_sent:
         if tok.tag_ in ('NN', 'NNS', 'VB', 'JJ'):
             query_properties.append(tok)
+        if tok.tag_ in ('WRB', 'WP', 'WP$'):
+            question_start.append(tok)
     # print("name entities: ", query_entities)
     # print("query properties: ", query_properties)
-    return query_entities, query_properties
+    return query_entities, query_properties, question_start
 
 
 def find_code(word, type_query='query_entity'):
@@ -120,19 +123,30 @@ def wiki_data(query_entity, query_property):
 
 
 def google_answer(corpus):
-    result = [people_also_ask.get_answer(corpus)['response']]
+    result = []
+    answer = people_also_ask.get_answer(corpus)
+    if answer['has_answer']:
+        result.append(answer)
     return result
 
 
 def wiki_bot(corpus):
-    query_entity, query_property = find_entities(corpus)
-    answer = wiki_data(query_entity, query_property)
+    query_entity, query_property, question_start = find_entities(corpus)
+    print(question_start)
+    if question_start[0].text.lower() == 'why':
+        answer = google_answer(corpus)
+    else:
+        answer = wiki_data(query_entity, query_property)
     if len(answer) == 0:
         answer = google_answer(corpus)
+    # answer = google_answer(corpus)
+    # if len(answer) == 0:
+    #     query_entity, query_property, question_start = find_entities(corpus)
+    #     answer = wiki_data(query_entity, query_property)
     answer_json = {'answer': answer}
     return answer_json
 
 
 if __name__ == '__main__':
-    answer = wiki_bot("why is summer hot?")
+    answer = wiki_bot("why is Vietnam poor?")
     print(answer)
