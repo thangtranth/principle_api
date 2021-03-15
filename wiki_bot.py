@@ -133,12 +133,9 @@ def google_answer(corpus):
 def wiki_bot(corpus):
     query_entity, query_property, question_start = find_entities(corpus)
     print(question_start)
-    if question_start[0].text.lower() == 'why':
-        answer = google_answer(corpus)
-    else:
-        answer = wiki_data(query_entity, query_property)
+    answer = google_answer(corpus)
     if len(answer) == 0:
-        answer = google_answer(corpus)
+        answer = wiki_data(query_entity, query_property)
     # answer = google_answer(corpus)
     # if len(answer) == 0:
     #     query_entity, query_property, question_start = find_entities(corpus)
@@ -148,5 +145,5 @@ def wiki_bot(corpus):
 
 
 if __name__ == '__main__':
-    answer = wiki_bot("why is Vietnam poor?")
+    answer = wiki_bot("who is richest person in the world?")
     print(answer)
