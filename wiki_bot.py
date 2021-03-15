@@ -124,17 +124,21 @@ def wiki_data(query_entity, query_property):
 
 def google_answer(corpus):
     result = []
-    answer = people_also_ask.get_answer(corpus)
-    if answer['has_answer']:
-        result.append(answer['response'])
+    response = people_also_ask.get_answer(corpus)
+    if response['has_answer']:
+        answer = response['response']
+        if 'Wikipedia' in answer:
+            result.append(answer[:(answer.find('Wikipedia'))])
+        else:
+            result.append(answer)
     return result
 
 
 def wiki_bot(corpus):
-    query_entity, query_property, question_start = find_entities(corpus)
-    print(question_start)
     answer = google_answer(corpus)
     if len(answer) == 0:
+        query_entity, query_property, question_start = find_entities(corpus)
+        print(question_start)
         answer = wiki_data(query_entity, query_property)
     # answer = google_answer(corpus)
     # if len(answer) == 0:
@@ -145,5 +149,5 @@ def wiki_bot(corpus):
 
 
 if __name__ == '__main__':
-    answer = wiki_bot("who is richest person in the world?")
+    answer = wiki_bot("what is love?")
     print(answer)
