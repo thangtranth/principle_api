@@ -127,10 +127,11 @@ def google_answer(corpus):
     response = people_also_ask.get_answer(corpus)
     print("response: ", response)
     if response['has_answer']:
-        if "youtube.com" in response['displayed_link'] and len(response['related_questions']) > 0:
-            related_question = response['related_questions'][0]
-            related_response = people_also_ask.get_answer(related_question)
-            answer = related_response['response']
+        if len(response['displayed_link']) > 0 and len(response['related_questions']) > 0:
+            if "youtube.com" in response['displayed_link']:
+                related_question = response['related_questions'][0]
+                related_response = people_also_ask.get_answer(related_question)
+                answer = related_response['response']
         else:
             answer = response['response']
         if 'Wikipedia' in answer:
