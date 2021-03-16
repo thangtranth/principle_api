@@ -126,7 +126,13 @@ def google_answer(corpus):
     result = []
     response = people_also_ask.get_answer(corpus)
     if response['has_answer']:
-        answer = response['response']
+        if "youtube.com" in response['displayed_link'] and len(response['related_questions']) > 0:
+            print("response: ", response)
+            related_question = response['related_questions'][0]
+            related_response = people_also_ask.get_answer(related_question)
+            answer = related_response['response']
+        else:
+            answer = response['response']
         if 'Wikipedia' in answer:
             result.append(answer[:(answer.find('Wikipedia'))])
         else:
@@ -140,14 +146,10 @@ def wiki_bot(corpus):
         query_entity, query_property, question_start = find_entities(corpus)
         print(question_start)
         answer = wiki_data(query_entity, query_property)
-    # answer = google_answer(corpus)
-    # if len(answer) == 0:
-    #     query_entity, query_property, question_start = find_entities(corpus)
-    #     answer = wiki_data(query_entity, query_property)
     answer_json = {'answer': answer}
     return answer_json
 
 
 if __name__ == '__main__':
-    answer = wiki_bot("what is love?")
+    answer = wiki_bot("Do you love someone?")
     print(answer)
