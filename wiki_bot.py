@@ -127,7 +127,7 @@ def google_answer(corpus):
     response = people_also_ask.get_answer(corpus)
     print("response: ", response)
     if response['has_answer']:
-        if len(response['displayed_link']) > 0 and len(response['related_questions']) > 0:
+        if response['displayed_link'] is not None and len(response['related_questions']) > 0:
             if "youtube.com" in response['displayed_link']:
                 related_question = response['related_questions'][0]
                 related_response = people_also_ask.get_answer(related_question)
