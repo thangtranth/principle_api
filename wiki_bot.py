@@ -125,9 +125,9 @@ def wiki_data(query_entity, query_property):
 def google_answer(corpus):
     result = []
     response = people_also_ask.get_answer(corpus)
+    print("response: ", response)
     if response['has_answer']:
         if "youtube.com" in response['displayed_link'] and len(response['related_questions']) > 0:
-            print("response: ", response)
             related_question = response['related_questions'][0]
             related_response = people_also_ask.get_answer(related_question)
             answer = related_response['response']
@@ -151,5 +151,5 @@ def wiki_bot(corpus):
 
 
 if __name__ == '__main__':
-    answer = wiki_bot("Do you love someone?")
+    answer = wiki_bot("Who is Donal Trump wife?")
     print(answer)
