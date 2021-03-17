@@ -129,20 +129,29 @@ def google_answer(corpus):
     if response['has_answer']:
         if response['displayed_link'] is not None and len(response['related_questions']) > 0:
             if "youtube.com" in response['displayed_link']:
+                print('here 1')
                 related_question = response['related_questions'][0]
                 related_response = people_also_ask.get_answer(related_question)
                 answer = related_response['response']
-        else:
-            answer = response['response']
-        if 'Wikipedia' in answer:
-            result.append(answer[:(answer.find('Wikipedia'))])
-        else:
+            else:
+                print('here 2')
+                answer = response['response']
             result.append(answer)
+        else:
+            print('here 3')
+            answer = response['response']
+            if 'Wikipedia' in answer:
+                print('here 4')
+                result.append(answer[:(answer.find('Wikipedia'))])
+            else:
+                result.append(answer)
+
     return result
 
 
 def wiki_bot(corpus):
     answer = google_answer(corpus)
+    print("answer google is: ", answer)
     if len(answer) == 0:
         query_entity, query_property, question_start = find_entities(corpus)
         print(question_start)
@@ -152,5 +161,5 @@ def wiki_bot(corpus):
 
 
 if __name__ == '__main__':
-    answer = wiki_bot("Who is Donal Trump wife?")
+    answer = wiki_bot("Who is the tallest person in the world?")
     print(answer)
