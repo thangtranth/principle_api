@@ -152,6 +152,9 @@ def google_answer(corpus):
     if not response['has_answer'] and len(response['related_questions']) > 0:
         answer = get_related_question_google(response)
         result.append(answer)
+    # To avoid the None answer from the get_related_question_google function:
+    if None in result:
+        result = []
     return result
 
 def get_related_question_google(response):
