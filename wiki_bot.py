@@ -158,7 +158,10 @@ def get_related_question_google(response):
     related_question = response['related_questions'][0]
     related_response = people_also_ask.get_answer(related_question)
     print("related response: ", related_response)
-    answer = related_response['response']
+    if 'response' in related_response:
+        answer = related_response['response']
+    else:
+        answer = []
     return answer
 
 def wiki_bot(corpus):
