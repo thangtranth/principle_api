@@ -22,6 +22,9 @@ def find_entities(corpus):
             query_properties.append(tok)
         if tok.tag_ in ('WRB', 'WP', 'WP$'):
             question_start.append(tok)
+        if len(query_entities) == 0:
+            if tok.tag_ in ('NNP'):
+                query_entities.append(tok)
     # print("name entities: ", query_entities)
     # print("query properties: ", query_properties)
     return query_entities, query_properties, question_start
@@ -132,7 +135,7 @@ def google_answer(corpus):
                 print('here 1')
                 related_question = response['related_questions'][0]
                 related_response = people_also_ask.get_answer(related_question)
-                answer = related_response['response']
+                answer = get_related_question_google(response)
             else:
                 print('here 2')
                 answer = response['response']
@@ -145,9 +148,16 @@ def google_answer(corpus):
                 result.append(answer[:(answer.find('Wikipedia'))])
             else:
                 result.append(answer)
-
+    if not response['has_answer'] and len(response['related_questions']) > 0:
+        answer = get_related_question_google(response)
+        result.append(answer)
     return result
 
+def get_related_question_google(response):
+    related_question = response['related_questions'][0]
+    related_response = people_also_ask.get_answer(related_question)
+    answer = related_response['response']
+    return answer
 
 def wiki_bot(corpus):
     answer = google_answer(corpus)
@@ -161,5 +171,5 @@ def wiki_bot(corpus):
 
 
 if __name__ == '__main__':
-    answer = wiki_bot("Who is the tallest person in the world?")
+    answer = wiki_bot("What do you think about Elon Musk?")
     print(answer)
