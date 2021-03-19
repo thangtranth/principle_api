@@ -148,7 +148,7 @@ def google_answer(corpus):
                 result.append(answer[:(answer.find('Wikipedia'))])
             else:
                 result.append(answer)
-    if not response['has_answer'] and len(response['related_questions']) > 0:
+    if (not response['has_answer'] or len(response['response']==0)) and len(response['related_questions']) > 0:
         answer = get_related_question_google(response)
         result.append(answer)
     return result
