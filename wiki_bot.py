@@ -130,11 +130,12 @@ def google_answer(corpus):
     response = people_also_ask.get_answer(corpus)
     print("response: ", response)
     if response['has_answer']:
+        if len(response['response'])==0 and len(response['related_questions']) > 0:
+            answer = get_related_question_google(response)
+            result.append(answer)
         if response['displayed_link'] is not None and len(response['related_questions']) > 0:
             if "youtube.com" in response['displayed_link']:
                 print('here 1')
-                related_question = response['related_questions'][0]
-                related_response = people_also_ask.get_answer(related_question)
                 answer = get_related_question_google(response)
             else:
                 print('here 2')
@@ -148,7 +149,7 @@ def google_answer(corpus):
                 result.append(answer[:(answer.find('Wikipedia'))])
             else:
                 result.append(answer)
-    if (not response['has_answer'] or len(response['response'])==0) and len(response['related_questions']) > 0:
+    if not response['has_answer'] and len(response['related_questions']) > 0:
         answer = get_related_question_google(response)
         result.append(answer)
     return result
@@ -171,5 +172,5 @@ def wiki_bot(corpus):
 
 
 if __name__ == '__main__':
-    answer = wiki_bot("I want to improve my relationship?")
+    answer = wiki_bot("what is the fastest animal?")
     print(answer)
