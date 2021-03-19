@@ -161,7 +161,7 @@ def get_related_question_google(response):
     if 'response' in related_response:
         answer = related_response['response']
     else:
-        answer = []
+        answer = None
     return answer
 
 def wiki_bot(corpus):
