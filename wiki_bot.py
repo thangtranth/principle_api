@@ -160,9 +160,9 @@ def get_related_question_google(response):
     print("related response: ", related_response)
     if 'response' in related_response:
         answer = related_response['response']
+        return answer
     else:
-        answer = None
-    return answer
+        return
 
 def wiki_bot(corpus):
     answer = google_answer(corpus)
