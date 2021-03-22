@@ -103,7 +103,9 @@ def wiki_data(query_entity, query_property):
     print(query_entity)
     print(query_property)
     results = []
-    if len(query_property) == 0:
+    if len(query_property) == 0 and len(query_entity) == 0:
+        return results
+    elif len(query_property) == 0:
         results = wikipedia_query(query_entity)
     elif len(query_entity) == 0:
         results = wikipedia_query(query_property)
@@ -130,7 +132,7 @@ def google_answer(corpus):
     response = people_also_ask.get_answer(corpus)
     print("response: ", response)
     if response['has_answer']:
-        if len(response['response'])==0 and len(response['related_questions']) > 0:
+        if len(response['response']) == 0 and len(response['related_questions']) > 0:
             answer = get_related_question_google(response)
             result.append(answer)
         if response['displayed_link'] is not None and len(response['related_questions']) > 0:
@@ -157,6 +159,7 @@ def google_answer(corpus):
         result = []
     return result
 
+
 def get_related_question_google(response):
     related_question = response['related_questions'][0]
     related_response = people_also_ask.get_answer(related_question)
@@ -166,6 +169,7 @@ def get_related_question_google(response):
         return answer
     else:
         return
+
 
 def wiki_bot(corpus):
     answer = google_answer(corpus)
